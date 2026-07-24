@@ -1,182 +1,274 @@
-<!DOCTYPE html>
+html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Official Award & Apology Portal 🏆</title>
+  <title>Official Corporate Victory & Apology Portal 🏆</title>
   <style>
     :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --accent: #ec4899;
+      --bg-color: #0b0f19;
+      --card-bg: #151d30;
+      --accent-pink: #f43f5e;
       --accent-gold: #fbbf24;
-      --text: #f8fafc;
-      --subtext: #94a3b8;
+      --accent-green: #10b981;
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
       background-color: var(--bg-color);
-      color: var(--text);
+      color: var(--text-main);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       padding: 20px;
+      overflow-x: hidden;
     }
 
     .container {
       background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 500px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 32px 24px;
+      max-width: 520px;
       width: 100%;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
 
     .badge {
       background: linear-gradient(135deg, #f59e0b, #d97706);
       color: #fff;
-      font-weight: bold;
-      font-size: 0.8rem;
+      font-weight: 700;
+      font-size: 0.75rem;
       padding: 6px 16px;
       border-radius: 20px;
       display: inline-block;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
     }
 
     h1 {
-      font-size: 1.8rem;
+      font-size: 1.85rem;
       color: var(--accent-gold);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      font-weight: 800;
+      line-height: 1.2;
     }
 
     .subtitle {
-      color: var(--subtext);
+      color: var(--text-sub);
       font-size: 0.95rem;
-      margin-bottom: 25px;
-    }
-
-    .card-box {
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-left: 4px solid var(--accent);
-      text-align: left;
+      margin-bottom: 24px;
+      line-height: 1.4;
     }
 
     .comparison {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 24px;
       font-size: 0.85rem;
     }
 
     .comp-box {
-      background: rgba(0, 0, 0, 0.2);
-      padding: 12px;
-      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     .comp-box h4 {
-      color: var(--subtext);
-      margin-bottom: 5px;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .comp-box p {
-      font-weight: bold;
+      font-weight: 700;
+      line-height: 1.3;
     }
 
-    .bad { color: #ef4444; }
-    .good { color: #10b981; }
+    .bad { color: #f87171; }
+    .good { color: #34d399; }
+
+    .card-box {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--accent-pink);
+      text-align: left;
+    }
 
     .message-text {
       line-height: 1.6;
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: #e2e8f0;
     }
 
+    .marathi-tag {
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+
     .stats {
-      margin-top: 20px;
-      padding-top: 15px;
+      margin-top: 10px;
+      margin-bottom: 24px;
+      padding-top: 18px;
       border-top: 1px dashed rgba(255, 255, 255, 0.1);
       display: flex;
       justify-content: space-around;
     }
 
     .stat-item h3 {
-      color: var(--accent);
-      font-size: 1.2rem;
+      color: var(--accent-pink);
+      font-size: 1.25rem;
+      font-weight: 800;
     }
 
     .stat-item p {
       font-size: 0.75rem;
-      color: var(--subtext);
+      color: var(--text-sub);
+      margin-top: 2px;
     }
 
-    button {
-      margin-top: 25px;
-      background: linear-gradient(135deg, var(--accent), #be185d);
-      color: white;
-      border: none;
+    .action-section {
+      margin-top: 20px;
+      position: relative;
+      min-height: 110px;
+    }
+
+    .action-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #f1f5f9;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+
+    .btn {
       padding: 12px 24px;
       border-radius: 30px;
-      font-weight: bold;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+    .btn-yes {
+      background: linear-gradient(135deg, #f43f5e, #be185d);
+      color: white;
+      box-shadow: 0 4px 15px rgba(244, 63, 94, 0.35);
+      z-index: 2;
     }
 
-    #apology-status {
-      margin-top: 15px;
-      font-size: 0.85rem;
-      font-weight: bold;
+    .btn-yes:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(244, 63, 94, 0.5);
+    }
+
+    .btn-no {
+      background: #334155;
+      color: #cbd5e1;
+      transition: all 0.15s ease;
+      z-index: 10;
+    }
+
+    /* Celebration Screen */
+    #celebration {
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .celeb-emoji {
+      font-size: 3.5rem;
+      margin-bottom: 12px;
+      display: inline-block;
+      animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    .celeb-title {
       color: var(--accent-gold);
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .celeb-text {
+      color: #e2e8f0;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    canvas#confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="container" id="main-card">
     <span class="badge">Official Declaration 📜</span>
-    <h1>Certified Corporate Boss 🏆</h1>
-    <p class="subtitle">An official apology & celebration page for the Team Lead of the Year!</p>
+    <h1>Lai Bhari Team Lead! 🏆</h1>
+    <p class="subtitle">A dedicated celebration page for the absolute boss who just crushed a critical project!</p>
 
     <div class="comparison">
       <div class="comp-box">
         <h4>Phone Call Reaction</h4>
-        <p class="bad">"Co-graduation." 😐<br>(Emotional level: Potato)</p>
+        <p class="bad">"Co-graduation." 😐<br>(Brain status: 404 Error)</p>
       </div>
       <div class="comp-box">
         <h4>Actual Internal Reaction</h4>
-        <p class="good">"THAT'S MY GIRL!" 🎉<br>(Doing backflips)</p>
+        <p class="good">"ARRE LAI BHARI! 🎉"<br>(Mental backflips everywhere)</p>
       </div>
     </div>
 
     <div class="card-box">
       <p class="message-text">
-        To the absolute powerhouse who just casually saved a critical project and walked away with the award: 
-        <strong>I am insanely proud of you!</strong> 
+        To the absolute powerhouse who casually carried a critical project, led the entire team like a legend, and walked away with the award: <span class="marathi-tag">Khup khup proud of you!</span> ✨
         <br><br>
-        Please forgive my introverted brain glitch earlier. You led that team like a total boss, carried the weight, and nailed it. You deserve all the awards and a boyfriend who doesn't freeze on the phone! ❤️
+        Please forgive my phone reaction earlier. My introverted brain literally went into default NPC mode and randomly blurted out "co-graduation" like a glitching robot. 
+        <br><br>
+        In reality? You handled the pressure, crushed the deliverables, and proved once again that you're in a league of your own. You deserve all the praise, all the corporate glory, and a proper victory celebration! 👑🔥
       </p>
     </div>
 
@@ -190,25 +282,117 @@
         <p>Project Saved</p>
       </div>
       <div class="stat-item">
-        <h3>2/10</h3>
-        <p>My Call Skills</p>
+        <h3>0.5/10</h3>
+        <p>My Phone Call Skills</p>
       </div>
     </div>
 
-    <button onclick="acceptApology()">Click to Accept Apology & Hugs 🤗</button>
-    <p id="apology-status"></p>
+    <div class="action-section">
+      <p class="action-title">Will you accept this sincere apology & let me celebrate you?</p>
+      <div class="btn-group" id="btn-group">
+        <button class="btn btn-yes" onclick="acceptApology()">Yes, Apology Accepted! 💖</button>
+        <button class="btn btn-no" id="no-btn">No, Still Mad 😤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Celebration View -->
+  <div class="container" id="celebration">
+    <div class="celeb-emoji">👑🎉✨</div>
+    <h1 class="celeb-title">APOLOGY ACCEPTED!</h1>
+    <p class="celeb-text">
+      <span class="marathi-tag">Aga Bai!</span> Official forgiveness granted! 🥳<br><br>
+      You are officially the ultimate Team Lead of the Year. Now go take a bow, enjoy the glory, and get ready for a treat because the victory party is 100% on me! 🍕🥂❤️
+    </p>
+    <div class="badge" style="background: linear-gradient(135deg, #10b981, #059669);">Status: Case Closed & Celebrated 🏆</div>
   </div>
 
   <script>
-    function acceptApology() {
-      const status = document.getElementById('apology-status');
-      status.innerHTML = "🎉 Apology accepted! You are officially off the hook (for now). ❤️";
-      confettiEffect();
+    const noBtn = document.getElementById('no-btn');
+
+    // Function to move "No" button randomly
+    function moveNoButton() {
+      const btnRect = noBtn.getBoundingClientRect();
+      
+      // Calculate max positions on screen with margin
+      const maxX = window.innerWidth - btnRect.width - 40;
+      const maxY = window.innerHeight - btnRect.height - 40;
+
+      const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
     }
 
-    function confettiEffect() {
-      alert("✨ Virtual Hug & Celebration Sent Successfully! 🎉");
+    // Trigger on mouse hover or touch start
+    noBtn.addEventListener('mouseenter', moveNoButton);
+    noBtn.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    // Accept Apology Logic
+    function acceptApology() {
+      document.getElementById('main-card').style.display = 'none';
+      document.getElementById('celebration').style.display = 'block';
+      if (noBtn) noBtn.style.display = 'none';
+      startConfetti();
+    }
+
+    // Canvas Confetti Effect
+    function startConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const colors = ['#f43f5e', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa'];
+
+      for (let i = 0; i < 120; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speedY: Math.random() * 3 + 2,
+          speedX: Math.random() * 2 - 1,
+          rotation: Math.random() * 360,
+          rotSpeed: Math.random() * 10 - 5
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p) => {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+
+          p.y += p.speedY;
+          p.x += p.speedX;
+          p.rotation += p.rotSpeed;
+
+          if (p.y > canvas.height) {
+            p.y = -10;
+            p.x = Math.random() * canvas.width;
+          }
+        });
+        requestAnimationFrame(render);
+      }
+      render();
     }
   </script>
 </body>
 </html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Updated index.html created successfully!")
