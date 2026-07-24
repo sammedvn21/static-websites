@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Official Award & Apology Portal 🏆</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #ec4899;
+      --accent-gold: #fbbf24;
+      --text: #f8fafc;
+      --subtext: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #fff;
+      font-weight: bold;
+      font-size: 0.8rem;
+      padding: 6px 16px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      color: var(--accent-gold);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--subtext);
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+    }
+
+    .card-box {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--accent);
+      text-align: left;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+    }
+
+    .comp-box {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 12px;
+      border-radius: 10px;
+    }
+
+    .comp-box h4 {
+      color: var(--subtext);
+      margin-bottom: 5px;
+    }
+
+    .comp-box p {
+      font-weight: bold;
+    }
+
+    .bad { color: #ef4444; }
+    .good { color: #10b981; }
+
+    .message-text {
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #e2e8f0;
+    }
+
+    .stats {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .stat-item h3 {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .stat-item p {
+      font-size: 0.75rem;
+      color: var(--subtext);
+    }
+
+    button {
+      margin-top: 25px;
+      background: linear-gradient(135deg, var(--accent), #be185d);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+    }
+
+    #apology-status {
+      margin-top: 15px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: var(--accent-gold);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <span class="badge">Official Declaration 📜</span>
+    <h1>Certified Corporate Boss 🏆</h1>
+    <p class="subtitle">An official apology & celebration page for the Team Lead of the Year!</p>
+
+    <div class="comparison">
+      <div class="comp-box">
+        <h4>Phone Call Reaction</h4>
+        <p class="bad">"Co-graduation." 😐<br>(Emotional level: Potato)</p>
+      </div>
+      <div class="comp-box">
+        <h4>Actual Internal Reaction</h4>
+        <p class="good">"THAT'S MY GIRL!" 🎉<br>(Doing backflips)</p>
+      </div>
+    </div>
+
+    <div class="card-box">
+      <p class="message-text">
+        To the absolute powerhouse who just casually saved a critical project and walked away with the award: 
+        <strong>I am insanely proud of you!</strong> 
+        <br><br>
+        Please forgive my introverted brain glitch earlier. You led that team like a total boss, carried the weight, and nailed it. You deserve all the awards and a boyfriend who doesn't freeze on the phone! ❤️
+      </p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <h3>100/10</h3>
+        <p>Leadership Skills</p>
+      </div>
+      <div class="stat-item">
+        <h3>Critical</h3>
+        <p>Project Saved</p>
+      </div>
+      <div class="stat-item">
+        <h3>2/10</h3>
+        <p>My Call Skills</p>
+      </div>
+    </div>
+
+    <button onclick="acceptApology()">Click to Accept Apology & Hugs 🤗</button>
+    <p id="apology-status"></p>
+  </div>
+
+  <script>
+    function acceptApology() {
+      const status = document.getElementById('apology-status');
+      status.innerHTML = "🎉 Apology accepted! You are officially off the hook (for now). ❤️";
+      confettiEffect();
+    }
+
+    function confettiEffect() {
+      alert("✨ Virtual Hug & Celebration Sent Successfully! 🎉");
+    }
+  </script>
+</body>
+</html>
