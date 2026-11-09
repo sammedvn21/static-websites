@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Belated Diwali Apology</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Base typography and smooth dark festive backdrop */
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #070913;
+      color: #F8FAFC;
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    .font-festive {
+      font-family: 'Cinzel', serif;
+    }
+
+    /* Radial gradient: Deep Midnight Blue transitioning to Royal Festive Crimson */
+    .bg-festive-radial {
+      background: radial-gradient(circle at 50% 15%, rgba(251, 146, 60, 0.22) 0%, rgba(45, 8, 20, 0.92) 45%, #0b0a1a 95%);
+    }
+
+    /* Twinkling fairy lights animation */
+    @keyframes fairyGlow {
+      0%, 100% { opacity: 0.35; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 8px currentColor); }
+    }
+    .fairy-bulb {
+      animation: fairyGlow 2s ease-in-out infinite;
+    }
+    .fairy-bulb:nth-child(2n) { animation-delay: 0.4s; }
+    .fairy-bulb:nth-child(3n) { animation-delay: 0.9s; }
+    .fairy-bulb:nth-child(4n) { animation-delay: 1.4s; }
+
+    /* Animated Diya Flame Flicker */
+    @keyframes flameFlicker {
+      0%, 100% {
+        transform: scale(1) rotate(-1deg);
+        filter: drop-shadow(0 0 10px #fbbf24) drop-shadow(0 0 25px #ea580c);
+      }
+      25% {
+        transform: scale(1.08, 0.95) rotate(1.5deg);
+        filter: drop-shadow(0 0 14px #f59e0b) drop-shadow(0 0 30px #dc2626);
+      }
+      50% {
+        transform: scale(0.96, 1.05) rotate(-2deg);
+        filter: drop-shadow(0 0 8px #fde047) drop-shadow(0 0 20px #ea580c);
+      }
+      75% {
+        transform: scale(1.04, 0.98) rotate(1deg);
+        filter: drop-shadow(0 0 16px #fbbf24) drop-shadow(0 0 35px #f97316);
+      }
+    }
+
+    .animate-flame {
+      animation: flameFlicker 1.8s ease-in-out infinite alternate;
+      transform-origin: bottom center;
+    }
+
+    /* Subtle Rangoli Watermark Grid */
+    .rangoli-pattern {
+      background-image: radial-gradient(circle at center, rgba(245, 158, 11, 0.08) 2px, transparent 2px);
+      background-size: 24px 24px;
+    }
+
+    /* Custom Checkbox Design */
+    .custom-check:checked {
+      background-color: #f59e0b;
+      border-color: #fbbf24;
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='black' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+    }
+
+    /* Sparkler Canvas Overlay */
+    #sparkler-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+    }
+  </style>
+</head>
+<body class="bg-festive-radial min-h-screen relative flex flex-col justify-between selection:bg-amber-500 selection:text-black">
+
+  <!-- Interactive Sparklers & Embers Canvas Layer -->
+  <canvas id="sparkler-canvas"></canvas>
+
+  <!-- Clean Centered Festive Header -->
+  <header class="w-full py-4 px-4 sm:px-8 flex items-center justify-center z-30 relative border-b border-amber-900/20 backdrop-blur-sm">
+    <div class="flex items-center space-x-3">
+      <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 flex items-center justify-center shadow-lg shadow-amber-500/30">
+        <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C11.5 5.5 8 8 8 13C8 15.2 9.8 17 12 17C14.2 17 16 15.2 16 13C16 8 12.5 5.5 12 2ZM4 19C4 20.1 7.6 21 12 21C16.4 21 20 20.1 20 19C20 18.2 17.5 17.5 14 17.2V17C14 15.9 13.1 15 12 15C10.9 15 10 15.9 10 17V17.2C6.5 17.5 4 18.2 4 19Z"/>
+        </svg>
+      </div>
+      <div class="text-center sm:text-left">
+        <span class="font-festive text-sm sm:text-base tracking-widest text-amber-300 font-bold block leading-none">SHUBH DIWALI</span>
+        <span class="text-[10px] text-amber-500/80 tracking-wider uppercase font-semibold">A Belated Apology</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Twinkling Fairy Lights String across the top -->
+  <div class="pointer-events-none absolute top-14 left-0 right-0 flex justify-between px-4 sm:px-8 z-30 overflow-hidden">
+    <div class="flex items-center justify-between w-full">
+      <span class="fairy-bulb w-3 h-3 rounded-full bg-amber-300 text-amber-300 shadow-[0_0_8px_#fcd34d]"></span>
+      <span class="fairy-bulb w-2.5 h-2.5 rounded-full bg-rose-400 text-rose-400 shadow-[0_0_8px_#fb7185]"></span>
+      <span class="fairy-bulb w-3 h-3 rounded-full bg-yellow-300 text-yellow-300 shadow-[0_0_8px_#fde047]"></span>
+      <span class="fairy-bulb w-2.5 h-2.5 rounded-full bg-emerald-400 text-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+      <span class="fairy-bulb w-3 h-3 rounded-full bg-amber-400 text-amber-400 shadow-[0_0_8px_#fbbf24]"></span>
+      <span class="fairy-bulb w-2.5 h-2.5 rounded-full bg-pink-400 text-pink-400 shadow-[0_0_8px_#f472b6]"></span>
+      <span class="fairy-bulb w-3 h-3 rounded-full bg-yellow-200 text-yellow-200 shadow-[0_0_8px_#fef08a]"></span>
+      <span class="fairy-bulb w-2.5 h-2.5 rounded-full bg-amber-300 text-amber-300 shadow-[0_0_8px_#fcd34d]"></span>
+      <span class="fairy-bulb w-3 h-3 rounded-full bg-rose-300 text-rose-300 shadow-[0_0_8px_#fda4af]"></span>
+    </div>
+  </div>
+
+  <!-- Decorative Garlands / Toran Visual Accent -->
+  <div class="pointer-events-none absolute top-16 left-0 right-0 flex justify-around opacity-30 px-2 overflow-hidden z-10">
+    <div class="w-20 h-6 border-b-2 border-amber-500/40 rounded-full"></div>
+    <div class="w-20 h-6 border-b-2 border-amber-500/40 rounded-full hidden sm:block"></div>
+    <div class="w-20 h-6 border-b-2 border-amber-500/40 rounded-full"></div>
+    <div class="w-20 h-6 border-b-2 border-amber-500/40 rounded-full hidden sm:block"></div>
+    <div class="w-20 h-6 border-b-2 border-amber-500/40 rounded-full"></div>
+  </div>
+
+  <!-- Main Container: Centered, Clean & Simple Apology Card -->
+  <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8 relative z-20">
+    
+    <div class="w-full max-w-2xl bg-gradient-to-b from-[#16182e] to-[#0c0d1c] border border-amber-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden rangoli-pattern">
+      
+      <!-- Top Decorative Diya Graphic -->
+      <div class="flex flex-col items-center justify-center mb-6">
+        <div class="relative flex items-center justify-center">
+          <div class="absolute w-20 h-20 rounded-full bg-amber-500/20 blur-xl pointer-events-none"></div>
+          <!-- Animated Diya SVG -->
+          <svg class="w-16 h-16 drop-shadow-[0_4px_15px_rgba(245,158,11,0.4)]" viewBox="0 0 100 100" fill="none">
+            <path d="M20 65C20 78 32 85 50 85C68 85 80 78 80 65C80 62 76 58 70 58C58 58 42 58 30 58C24 58 20 62 20 65Z" fill="#c2410c" stroke="#f59e0b" stroke-width="1.5"/>
+            <ellipse cx="50" cy="59" rx="22" ry="4" fill="#78350f" />
+            <g class="animate-flame">
+              <path d="M50 45C50 45 42 33 45 20C47 12 50 8 50 8C50 8 53 12 55 20C58 33 50 45 50 45Z" fill="#fde047" opacity="0.95"/>
+              <path d="M50 44C50 44 46 34 47 25C48 20 50 16 50 16C50 16 52 20 53 25C54 34 50 44 50 44Z" fill="#ffffff"/>
+            </g>
+          </svg>
+        </div>
+        <span class="text-xs font-festive tracking-widest text-amber-300 font-bold uppercase mt-1">Shubh Diwali</span>
+      </div>
+
+      <!-- Letter Header -->
+      <div class="border-b border-amber-500/20 pb-4 mb-6 text-center">
+        <h1 class="font-festive text-xl sm:text-2xl font-bold text-amber-200">A Simple Apology</h1>
+        <p class="text-xs text-amber-400/80 mt-1">From the boyfriend who completely missed fitcheck duty</p>
+      </div>
+
+      <!-- The Letter Content -->
+      <div class="text-slate-200 text-sm sm:text-base leading-relaxed space-y-4 font-normal text-left sm:text-justify">
+        <p>
+          I know, I completely failed the boyfriend test on Diwali. You looked amazing, and you were patiently waiting for my photo, while I completely vanished.
+        </p>
+
+        <p>
+          I know you really wanted us to share that moment together, and it was silly of me to forget. I'm really sorry for being careless.
+        </p>
+
+        <p>
+          To make it up to you, I will put the entire outfit back on, let you judge and roast my style as much as you want.
+        </p>
+      </div>
+
+      <!-- Simple Options: What I Can Do For You -->
+      <div class="mt-8 pt-6 border-t border-amber-500/20">
+        <h2 class="font-festive text-amber-300 text-sm sm:text-base font-bold mb-1 flex items-center gap-2">
+          <span>✨</span>
+          <span>Pick what I owe you:</span>
+        </h2>
+        <p class="text-xs text-slate-400 mb-4">Choose what you want me to do to make it up to you:</p>
+
+        <div class="space-y-2.5" id="options-list">
+          <!-- Option 1 -->
+          <label class="flex items-center gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-700 hover:border-amber-500/50 cursor-pointer transition-all select-none">
+            <input type="checkbox" checked class="custom-check w-4 h-4 rounded appearance-none border border-amber-500/50 bg-slate-800 transition-all shrink-0">
+            <span class="text-xs sm:text-sm text-slate-200">
+              Put the entire Diwali outfit back on for a live private screening
+            </span>
+          </label>
+
+          <!-- Option 2 -->
+          <label class="flex items-center gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-700 hover:border-amber-500/50 cursor-pointer transition-all select-none">
+            <input type="checkbox" checked class="custom-check w-4 h-4 rounded appearance-none border border-amber-500/50 bg-slate-800 transition-all shrink-0">
+            <span class="text-xs sm:text-sm text-slate-200">
+              Buy your favorite dessert & take you out on a date
+            </span>
+          </label>
+
+          <!-- Option 3 -->
+          <label class="flex items-center gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-700 hover:border-amber-500/50 cursor-pointer transition-all select-none">
+            <input type="checkbox" checked class="custom-check w-4 h-4 rounded appearance-none border border-amber-500/50 bg-slate-800 transition-all shrink-0">
+            <span class="text-xs sm:text-sm text-slate-200">
+              Act as your personal photographer for as many photos as you want
+            </span>
+          </label>
+
+          <!-- Option 4 -->
+          <label class="flex items-center gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-700 hover:border-amber-500/50 cursor-pointer transition-all select-none">
+            <input type="checkbox" checked class="custom-check w-4 h-4 rounded appearance-none border border-amber-500/50 bg-slate-800 transition-all shrink-0">
+            <span class="text-xs sm:text-sm text-slate-200">
+              A full day of zero arguments where whatever you say goes
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Verdict Buttons Arena -->
+      <div class="mt-8 pt-6 border-t border-amber-500/20 text-center">
+        <p class="text-xs text-amber-200/90 font-medium mb-4">Are we good?</p>
+
+        <div class="relative min-h-[50px] flex items-center justify-center gap-4" id="verdict-arena">
+          <!-- Forgive Button -->
+          <button id="deal-button" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-black font-festive font-bold text-xs sm:text-sm tracking-wider shadow-lg shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
+            <span>Deal! You're Forgiven</span>
+            <span>❤️</span>
+          </button>
+
+          <!-- Playful Evasive Button -->
+          <button id="suffer-button" class="px-5 py-2.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 font-festive font-bold text-xs tracking-wider transition-all duration-150 absolute sm:relative">
+            Still Mad 😤
+          </button>
+        </div>
+
+        <!-- Tease Message -->
+        <div id="tease-bubble" class="opacity-0 transition-opacity duration-300 mt-3 text-xs text-amber-300 font-medium italic">
+          "Wait, hear me out! 🥺"
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- CELEBRATION MODAL (Triggered upon Deal) -->
+  <div id="celebration-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-gradient-to-b from-[#1a1c33] to-[#0c0e1a] border-2 border-amber-400 rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center shadow-[0_0_40px_rgba(245,158,11,0.3)] transform scale-90 transition-transform duration-300" id="celebration-box">
+      <div class="text-4xl mb-3">🪔</div>
+      <h2 class="font-festive text-xl sm:text-2xl font-bold text-amber-200 mb-2">Deal Locked In!</h2>
+      <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5">
+        Forgiveness granted! I promise to deliver on every single option you picked.
+      </p>
+
+      <button id="close-celebration-btn" class="w-full py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-black font-festive font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95">
+        Happy Diwali ❤️
+      </button>
+    </div>
+  </div>
+
+  <!-- Interactive Footer Hint -->
+  <footer class="w-full py-4 text-center text-xs text-amber-500/50 z-20 relative">
+    <span>Click anywhere on screen to spark celebration lights ✨</span>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    /* 1. Web Audio Synthesizer (Zero external dependencies) */
+    let audioCtx = null;
+    let audioEnabled = true;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playChime(freq = 523.25, duration = 0.3) {
+      if (!audioEnabled) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    /* 2. Sparkler Canvas Layer */
+    const canvas = document.getElementById('sparkler-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let particles = [];
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor(x, y, isCelebration = false) {
+        this.x = x;
+        this.y = y;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = isCelebration ? (Math.random() * 5 + 2) : (Math.random() * 3 + 1);
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed - 0.5;
+        this.alpha = 1;
+        this.decay = Math.random() * 0.03 + 0.015;
+        this.size = Math.random() * 2.2 + 1;
+        const colors = isCelebration
+          ? ['#fbbf24', '#f59e0b', '#fb7185', '#34d399', '#fde047']
+          : ['#fbbf24', '#f59e0b', '#fde68a', '#ffffff'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += 0.05;
+        this.vx *= 0.98;
+        this.alpha -= this.decay;
+      }
+
+      draw(c) {
+        c.save();
+        c.globalAlpha = Math.max(0, this.alpha);
+        c.fillStyle = this.color;
+        c.shadowColor = this.color;
+        c.shadowBlur = 5;
+        c.beginPath();
+        c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        c.fill();
+        c.restore();
+      }
+    }
+
+    function createSparklerBurst(x, y, count = 20, isCelebration = false) {
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle(x, y, isCelebration));
+      }
+    }
+
+    function renderSparklers() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.update();
+        p.draw(ctx);
+        if (p.alpha <= 0) particles.splice(i, 1);
+      }
+      requestAnimationFrame(renderSparklers);
+    }
+    requestAnimationFrame(renderSparklers);
+
+    window.addEventListener('click', (e) => {
+      const isInteractive = e.target.closest('button, input, label');
+      if (!isInteractive) {
+        initAudio();
+        createSparklerBurst(e.clientX, e.clientY, 15);
+        playChime(650 + Math.random() * 150, 0.2);
+      }
+    });
+
+    /* 3. Checkboxes Audio Feedback */
+    document.querySelectorAll('.custom-check').forEach(box => {
+      box.addEventListener('change', () => {
+        if (box.checked) {
+          playChime(580, 0.2);
+        }
+      });
+    });
+
+    /* 4. Playful Evasive "Still Mad" Button */
+    const sufferBtn = document.getElementById('suffer-button');
+    const teaseBubble = document.getElementById('tease-bubble');
+    const evasiveQuotes = [
+      "Wait, hear me out! 🥺",
+      "Extra dessert included? 🍩",
+      "You know you can't stay mad! ✨",
+      "I will put the outfit on right now! 😂",
+      "Error: Still mad not permitted ❤️"
+    ];
+    let quoteIdx = 0;
+
+    function evadeButton() {
+      initAudio();
+      playChime(350, 0.2);
+      const deltaX = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 60 + 30);
+      const deltaY = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 30 + 15);
+      sufferBtn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+      teaseBubble.textContent = evasiveQuotes[quoteIdx];
+      quoteIdx = (quoteIdx + 1) % evasiveQuotes.length;
+      teaseBubble.classList.remove('opacity-0');
+    }
+
+    sufferBtn.addEventListener('mouseenter', evadeButton);
+    sufferBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      evadeButton();
+    });
+    sufferBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      evadeButton();
+    });
+
+    /* 5. Deal & Celebration */
+    const dealBtn = document.getElementById('deal-button');
+    const celebrationModal = document.getElementById('celebration-modal');
+    const celebrationBox = document.getElementById('celebration-box');
+    const closeCelebrationBtn = document.getElementById('close-celebration-btn');
+
+    dealBtn.addEventListener('click', () => {
+      initAudio();
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, idx) => setTimeout(() => playChime(freq, 0.4), idx * 120));
+
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          const x = Math.random() * width;
+          const y = Math.random() * (height * 0.5) + 100;
+          createSparklerBurst(x, y, 40, true);
+        }, i * 200);
+      }
+
+      celebrationModal.classList.remove('hidden');
+      setTimeout(() => {
+        celebrationModal.classList.remove('opacity-0');
+        celebrationBox.classList.remove('scale-90');
+        celebrationBox.classList.add('scale-100');
+      }, 50);
+    });
+
+    closeCelebrationBtn.addEventListener('click', () => {
+      celebrationModal.classList.add('opacity-0');
+      celebrationBox.classList.add('scale-90');
+      setTimeout(() => celebrationModal.classList.add('hidden'), 300);
+    });
+  </script>
+</body>
+</html>
